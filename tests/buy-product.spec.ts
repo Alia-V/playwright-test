@@ -1,11 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from './pages/login.page';
 import { InventoryPage } from './pages/inventory.page';
 import { CartPage } from './pages/cart.page';
 import { CheckoutPage } from './pages/checkout.page';
-
-const USERNAME = process.env.SAUCE_USERNAME!;
-const PASSWORD = process.env.SAUCE_PASSWORD!;
 
 test.describe('Buy products', () => {
   let inventoryPage: InventoryPage;
@@ -13,13 +9,11 @@ test.describe('Buy products', () => {
   let checkoutPage: CheckoutPage;
 
   test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
     inventoryPage = new InventoryPage(page);
     cartPage = new CartPage(page);
     checkoutPage = new CheckoutPage(page);
 
-    await loginPage.open();
-    await loginPage.login(USERNAME, PASSWORD);
+    await page.goto('/inventory.html');
   });
 
   test('buy products', async ({ page }) => {
