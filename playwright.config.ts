@@ -13,7 +13,7 @@ process.loadEnvFile(path.resolve(__dirname, '.env'));
 export default defineConfig({
   globalSetup: require.resolve('./global.setup'),
 
-  // globalTeardown: require.resolve('./global.teardown'),
+  globalTeardown: require.resolve('./global.teardown'),
 
   testDir: './tests',
   /* Run tests in files in parallel */
